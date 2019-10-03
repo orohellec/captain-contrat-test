@@ -1,0 +1,6 @@
+<h1>Welcome to the Arena</h1>
+
+<% @fighters.each do |fighter| %>
+  <p> <%= fighter.name + ', ' + fighter.health.to_s + ', ' + fighter.attack.to_s  %> </p>
+<% end %>
+
