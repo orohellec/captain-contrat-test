@@ -47,6 +47,29 @@ class FightersController < ApplicationController
     end
   end
 
+  def fight_arena
+    selected_player = params[:fighter]
+    fighter_1 = Fighter.find(selected_player[:fighter_1])
+    fighter_2 = Fighter.find(selected_player[:fighter_2])
+    game_result = Fighter.fight(fighter_1, fighter_2)
+    history = History.new(resume: game_result[:resume])
+    player_1_win = fighter_1.name == game_result[:winner_name] ? true : false
+
+    history.fighter_histories.build(
+      fighter_id: fighter_1.id, 
+      history_id: history.id, 
+      win: player_1_win
+    )
+    history.fighter_histories.build(
+      fighter_id: fighter_2.id,
+      history_id: history.id,
+      win: !player_1_win
+    )
+    history.save
+    puts @game_result
+    redirect_to root_path
+  end
+
   # DELETE /fighters/1
   # DELETE /fighters/1.json
   def destroy

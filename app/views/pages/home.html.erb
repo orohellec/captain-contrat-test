@@ -1,6 +1,46 @@
-<h1>Welcome to the Arena</h1>
+<h1>Bienvenue dans l'arène</h1>
 
-<% @fighters.each do |fighter| %>
-  <p> <%= fighter.name + ', ' + fighter.health.to_s + ', ' + fighter.attack.to_s  %> </p>
+<div>
+  <h2>Combattants pour le Titre</h2>
+  <% @fighters.each do |fighter| %>
+    <p> <%= fighter.name + ', ' + fighter.health.to_s + ', ' + fighter.attack.to_s %> </p>
+  <% end %>
+  <%= link_to 'Créer un nouveau combattant', new_fighter_path %> 
+</div>
+<hr>
+
+<%= form_with(controller: "fighters_controller", method: "post", action: fight_path(Fighter.first, Fighter.last)) do %>
+  <h3>Premier combattant</h3>
+  <%= collection_radio_buttons(:fighter, :fighter_1, Fighter.all, :id, :name) do |b| %>
+    <%= b.radio_button %>
+    <%= b.label  %>
+  <% end %>
+  
+  <h3>Deuxième combattant</h3>
+  <%= collection_radio_buttons(:fighter, :fighter_2, Fighter.all, :id, :name) do |b| %>
+    <%= b.radio_button %>
+    <%= b.label  %>
+  <% end %>
+
+  <%= submit_tag("FIGHT !") %>
 <% end %>
+<hr>
+<% if @last_fight %>
+  <div>
+    <div>Dernier combat</div>
+    <br>
+    <%= @last_fight.fighters[0].name + ' VS ' + @last_fight.fighters[1].name %>
+    <br>
+    <%= "Winner: " + @last_fight_winner.name %>
+    <br>
+    <br>
+    <% @last_fight.resume.each do |line| %>
+      <%= line %>
+      <br >
+    <% end %>
+  </div>
+<% end %>
+
+
+
 
