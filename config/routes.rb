@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'pages#home'
   get '/fights-history', to: 'pages#fights_history'
   resources :fighters
