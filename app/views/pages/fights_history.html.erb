@@ -1,0 +1,11 @@
+<h1>Historique des combats</h1>
+
+<% @histories.each do |history| %>
+  <div class="history-line">
+    <%= history.created_at.strftime("%d-%m-%Y") %>
+    <%= "Gagnant: " + history.fighter_histories.find_by(win: true).fighter.name %>
+    <%= "Perdant: " + history.fighter_histories.find_by(win: false).fighter.name %>
+  </div>
+<% end %>
+
+
