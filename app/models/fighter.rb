@@ -6,6 +6,8 @@ class Fighter < ApplicationRecord
 
   belongs_to :user
 
+  validates :user_id, uniqueness: true
+
   def self.fight(fighter_1, fighter_2)
     game = GameService.new(fighter_1, fighter_2)
     game.fight

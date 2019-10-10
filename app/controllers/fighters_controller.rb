@@ -25,6 +25,7 @@ class FightersController < ApplicationController
   # POST /fighters.json
   def create
     @fighter = Fighter.new(fighter_params)
+    @fighter.user_id = current_user.id
 
     respond_to do |format|
       if @fighter.save

@@ -5,7 +5,16 @@
     <%= link_to 'Historique des combats', fights_history_path %>
   </div>
   <div class="navbar-right">
-    <%= link_to 'Inscription', new_user_registration_path %>
-    <%= link_to 'Se connecter', new_user_session_path %>
+    <% if !current_user %>
+      <%= link_to 'Inscription', new_user_registration_path %>
+      <%= link_to 'Se connecter', new_user_session_path %>
+    <% else %>
+      <% if current_user.fighter %>
+        <%= link_to 'Mon combattant', fighter_path(id: current_user.fighter) %>
+      <% else %>
+        <%= link_to "Créer mon combattant", new_fighter_path %>
+      <% end %>
+      <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete %>
+    <% end %>
   </div>
 </div>
