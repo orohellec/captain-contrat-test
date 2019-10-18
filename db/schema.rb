@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_131155) do
+ActiveRecord::Schema.define(version: 2019_10_15_143249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "fighter_histories", force: :cascade do |t|
-    t.bigint "fighter_id"
-    t.bigint "history_id"
-    t.boolean "win", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["fighter_id"], name: "index_fighter_histories_on_fighter_id"
-    t.index ["history_id"], name: "index_fighter_histories_on_history_id"
-  end
 
   create_table "fighters", force: :cascade do |t|
     t.string "name"
@@ -32,13 +22,20 @@ ActiveRecord::Schema.define(version: 2019_10_09_131155) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "wins", default: 0
+    t.integer "losses", default: 0
+    t.float "ratio", default: 0.0
     t.index ["user_id"], name: "index_fighters_on_user_id"
   end
 
   create_table "histories", force: :cascade do |t|
+    t.bigint "winner_id"
+    t.bigint "loser_id"
     t.text "resume"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["loser_id"], name: "index_histories_on_loser_id"
+    t.index ["winner_id"], name: "index_histories_on_winner_id"
   end
 
   create_table "users", force: :cascade do |t|

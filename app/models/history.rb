@@ -1,7 +1,5 @@
 class History < ApplicationRecord
   serialize :resume, Array
-  has_many :fighter_histories, dependent: :destroy
-  has_many :fighters, through: :fighter_histories
-  
-  default_scope { order(created_at: :desc)}
+  belongs_to :winner, class_name: 'Fighter'
+  belongs_to :loser, class_name: 'Fighter'
 end

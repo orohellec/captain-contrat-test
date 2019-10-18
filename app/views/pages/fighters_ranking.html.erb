@@ -1,0 +1,21 @@
+<h1>Classement</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Combattant</th>
+      <th>Victoires</th>
+      <th>Défaites</th>
+      <th>Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @fighters_ranked.each do |fighter| %>
+      <tr>
+        <td><%= fighter.name %></td>
+        <td><%= fighter.wins %></td>
+        <td><%= fighter.losses %></td>
+        <td><%= fighter.ratio.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

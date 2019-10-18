@@ -15,5 +15,9 @@
   <%= @fighter.attack %>
 </p>
 
-<%= link_to 'Edit', edit_fighter_path(@fighter) %> |
+<% if current_user %>
+  <% if current_user.fighter == @fighter %>
+    <%= link_to 'Edit', edit_fighter_path(@fighter) %> |
+  <% end%>
+<% end %>
 <%= link_to 'Back', fighters_path %>

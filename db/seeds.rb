@@ -8,11 +8,11 @@
 
 Fighter.delete_all
 
-2.times do |i|
+3.times do |i|
   user = User.new(email: "example#{i + 1}@gmail.com", password: 'lalala')
   user.save
   
   Fighter.create!(name: "Combattant #{i + 1}", health: 100 * (i + 1), attack: 10, user: user)
 end
 
-puts '2 users created with 1 Fighter associated each'
+puts '3 users created with 1 Fighter associated each'

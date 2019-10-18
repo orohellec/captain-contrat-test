@@ -1,28 +1,21 @@
 class FightersController < ApplicationController
+  before_action :protect_routes, only: [:edit, :destroy, :update]
   before_action :set_fighter, only: [:show, :edit, :update, :destroy]
 
-  # GET /fighters
-  # GET /fighters.json
   def index
     @fighters = Fighter.all
   end
 
-  # GET /fighters/1
-  # GET /fighters/1.json
   def show
   end
 
-  # GET /fighters/new
   def new
     @fighter = Fighter.new
   end
 
-  # GET /fighters/1/edit
   def edit
   end
 
-  # POST /fighters
-  # POST /fighters.json
   def create
     @fighter = Fighter.new(fighter_params)
     @fighter.user_id = current_user.id
@@ -48,31 +41,22 @@ class FightersController < ApplicationController
     end
   end
 
-  def fight_arena
-    selected_player = params[:fighter]
-    fighter_1 = Fighter.find(selected_player[:fighter_1])
-    fighter_2 = Fighter.find(selected_player[:fighter_2])
-    game_result = Fighter.fight(fighter_1, fighter_2)
-    history = History.new(resume: game_result[:resume])
-    player_1_win = fighter_1.name == game_result[:winner_name] ? true : false
+  def fight
+    fighter_1 = Fighter.find(params[:fighter1_id]) # current_user_fighter
+    fighter_2 = Fighter.find(params[:fighter2_id]) # random fighter (except the current user fighter)
 
-    history.fighter_histories.build(
-      fighter_id: fighter_1.id, 
-      history_id: history.id, 
-      win: player_1_win
-    )
-    history.fighter_histories.build(
-      fighter_id: fighter_2.id,
-      history_id: history.id,
-      win: !player_1_win
+    fight_result = Fighter.fight(fighter_1, fighter_2) # return {winner: Fighter, Loser: Fighter, resume: array}
+      Fighter.find(fight_result[:winner].id).add_victory_or_defeat('win')
+      Fighter.find(fight_result[:loser].id).add_victory_or_defeat('lose')
+    history = History.new(
+      winner: fight_result[:winner],
+      loser: fight_result[:loser], 
+      resume: fight_result[:resume]
     )
     history.save
-    puts @game_result
-    redirect_to root_path
+    redirect_to fight_result_path
   end
 
-  # DELETE /fighters/1
-  # DELETE /fighters/1.json
   def destroy
     @fighter.destroy
     respond_to do |format|
@@ -81,9 +65,12 @@ class FightersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_fighter
       @fighter = Fighter.find(params[:id])
+    end
+
+    def protect_routes
+      redirect_to root_path unless current_user.fighter.id == params[:id].to_i
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

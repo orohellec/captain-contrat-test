@@ -1,0 +1,10 @@
+<h1>Historique de votre combattant</h1>
+
+<%= 'Victoires: ' + @total_wins.to_s %>
+<%= 'Défaites: ' + @total_loses.to_s %>
+<br>
+
+<% @all_fights.each do |history| %>
+  <%= "Date: #{history.created_at.strftime("%d-%m-%Y")} - Gagnant: #{history.winner.name} - Perdant: #{history.loser.name}" %>
+  <br>
+<% end %>

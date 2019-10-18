@@ -1,45 +1,29 @@
 <h1>Bienvenue dans l'arène</h1>
 
-<div>
-  <h2>Combattants pour le Titre</h2>
-  <% @fighters.each do |fighter| %>
-    <p> <%= fighter.name + ', ' + fighter.health.to_s + ', ' + fighter.attack.to_s %> </p>
-  <% end %>
-  <%= link_to 'Créer un nouveau combattant', new_fighter_path %> 
-</div>
-<hr>
+<p>Le principe de l'application est simple, vous devez créer un profil puis un combattant pour affronter d'autres combattants créé par d'autres utilisateurs</p>
 
-<%= form_with(controller: "fighters_controller", method: "post", action: fight_path(Fighter.first, Fighter.last)) do %>
-  <h3>Premier combattant</h3>
-  <%= collection_radio_buttons(:fighter, :fighter_1, Fighter.all, :id, :name) do |b| %>
-    <%= b.radio_button %>
-    <%= b.label  %>
+<% if current_user %>
+  <% if current_user.fighter %>
+    <%= button_to(
+      'Combattre un adversaire aléatoire',
+      fight_path,
+      controller: "fighters_controller",
+      params: { 
+        fighter1_id: current_user.fighter.id,
+        fighter2_id: @fighters_without_user_fighter.offset(rand(@fighters_without_user_fighter.count)).first 
+      },
+      method: :post
+      )
+    %>
+  <% else %>
+    <p>Vous devez créer un combattant pour pouvoir vous battre</p>
   <% end %>
   
-  <h3>Deuxième combattant</h3>
-  <%= collection_radio_buttons(:fighter, :fighter_2, Fighter.all, :id, :name) do |b| %>
-    <%= b.radio_button %>
-    <%= b.label  %>
-  <% end %>
+<% else %>
+  <p>Vous devez vous connecter pour pouvoir vous battre</p>
+<% end %>
 
-  <%= submit_tag("FIGHT !") %>
-<% end %>
-<hr>
-<% if @last_fight %>
-  <div>
-    <div>Dernier combat</div>
-    <br>
-    <%= @last_fight.fighters[0].name + ' VS ' + @last_fight.fighters[1].name %>
-    <br>
-    <%= "Winner: " + @last_fight_winner.name %>
-    <br>
-    <br>
-    <% @last_fight.resume.each do |line| %>
-      <%= line %>
-      <br >
-    <% end %>
-  </div>
-<% end %>
+
 
 
 

@@ -2,7 +2,7 @@
   <div class="navbar-left">
     <%= link_to 'Arène', root_path %>
     <%= link_to 'Combattants', fighters_path %>
-    <%= link_to 'Historique des combats', fights_history_path %>
+    <%= link_to 'Palmarès', fighters_ranking_path %>
   </div>
   <div class="navbar-right">
     <% if !current_user %>
@@ -11,6 +11,10 @@
     <% else %>
       <% if current_user.fighter %>
         <%= link_to 'Mon combattant', fighter_path(id: current_user.fighter) %>
+        <% if current_user.fighter.last_fight %>
+          <%= link_to 'Dernier combat', fight_result_path %>
+        <% end %>
+        <%= link_to 'Historique de mon combattant', fighter_history_path %>
       <% else %>
         <%= link_to "Créer mon combattant", new_fighter_path %>
       <% end %>

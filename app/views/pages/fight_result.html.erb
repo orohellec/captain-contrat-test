@@ -1,0 +1,7 @@
+<h1>Résultat du dernier combat</h1>
+<%= "Winner: " + @last_fight_winner.name %>
+<%= "Loser: " + @last_fight_loser.name %>
+
+<% @last_fight.resume.each do |line| %>
+  <p><%= line %></p>
+<% end %>
