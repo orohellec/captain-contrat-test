@@ -21,4 +21,8 @@ class PagesController < ApplicationController
   def fighters_ranking
     @fighters_ranked = Fighter.ranking_by_victory
   end
+
+  def fight_resume
+    @history = History.find(params[:id])
+  end
 end

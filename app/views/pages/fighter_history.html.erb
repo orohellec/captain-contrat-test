@@ -6,5 +6,6 @@
 
 <% @all_fights.each do |history| %>
   <%= "Date: #{history.created_at.strftime("%d-%m-%Y")} - Gagnant: #{history.winner.name} - Perdant: #{history.loser.name}" %>
+  <%= link_to 'Résumé', fight_resume_path(id: history.id) %>
   <br>
 <% end %>
