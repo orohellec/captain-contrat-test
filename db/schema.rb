@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_160112) do
+ActiveRecord::Schema.define(version: 2019_10_20_195032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 2019_10_18_160112) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name"
+    t.integer "attack"
+    t.integer "armor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fighter_equipments", force: :cascade do |t|
+    t.bigint "fighter_id"
+    t.bigint "equipment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_id"], name: "index_fighter_equipments_on_equipment_id"
+    t.index ["fighter_id"], name: "index_fighter_equipments_on_fighter_id"
   end
 
   create_table "fighters", force: :cascade do |t|

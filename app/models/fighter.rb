@@ -2,6 +2,9 @@ class Fighter < ApplicationRecord
   belongs_to :user
   has_one_attached :avatar
 
+  has_many :fighter_equipments
+  has_many :equipments, through: :fighter_equipments
+  
   validates :user_id, uniqueness: true
 
   def self.fight(fighter_1, fighter_2)
@@ -42,6 +45,13 @@ class Fighter < ApplicationRecord
   def get_damaged(opponent)
     self.health -= opponent.attack
     "#{name} points de vie: #{health}"
+  end
+
+  def equipment_bonus
+    self.equipments.each do |equipment|
+      self.health += equipment.armor
+      self.attack += equipment.attack
+    end
   end
 
   private

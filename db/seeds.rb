@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Fighter.delete_all
+User.delete_all
 
 3.times do |i|
   user = User.new(email: "example#{i + 1}@gmail.com", password: 'lalala')
@@ -16,3 +17,9 @@ Fighter.delete_all
 end
 
 puts '3 users created with 1 Fighter associated each'
+
+Equipment.create!(name: "Epée", attack: 10, armor: 0)
+Equipment.create!(name: "Armure", attack: 0, armor: 80)
+Equipment.create!(name: "Bouclier", attack: 5, armor: 40)
+
+puts "3 equipments created"

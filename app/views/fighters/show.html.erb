@@ -19,6 +19,13 @@
   <%= @fighter.attack %>
 </p>
 
+<p><strong>Equipement:</strong></p>
+<% @fighter.equipments.each do |equipment| %>
+  <p><%= equipment.name %></p>
+  <p><%= equipment.attack %></p>
+  <p><%= equipment.armor %></p>
+<% end %>
+
 <% if current_user %>
   <% if current_user.fighter == @fighter %>
     <%= link_to 'Edit', edit_fighter_path(@fighter) %> |

@@ -18,6 +18,9 @@ class FightersController < ApplicationController
 
   def create
     @fighter = Fighter.new(fighter_params)
+    # params[:equipments].each do |id|
+    #   FighterEquipment.create(fighter: @fighter, equipment: id)
+    # end
     @fighter.user_id = current_user.id
 
     respond_to do |format|
@@ -75,6 +78,6 @@ class FightersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fighter_params
-      params.require(:fighter).permit(:avatar, :name, :health, :attack)
+      params.require(:fighter).permit(:avatar, :name, :health, :attack, equipment_ids: [])
     end
 end

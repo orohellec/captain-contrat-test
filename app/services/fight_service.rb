@@ -11,6 +11,8 @@ class FightService
   def fight
     result = { winner: nil, loser: nil, resume: [] }
     attacker, defender = @fighter_1, @fighter_2
+    attacker.equipment_bonus
+    defender.equipment_bonus
     result[:resume] << "#{attacker.name} (#{attacker.health} PV) VS #{defender.name} (#{defender.health} PV)"
     while 1
       result[:resume] << attacker.attack_fighter(defender)

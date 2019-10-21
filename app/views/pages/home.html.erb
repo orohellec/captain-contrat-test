@@ -13,8 +13,7 @@
         fighter2_id: @fighters_without_user_fighter.offset(rand(@fighters_without_user_fighter.count)).first 
       },
       method: :post
-      )
-    %>
+    ) %>
   <% else %>
     <p>Vous devez créer un combattant pour pouvoir vous battre</p>
   <% end %>
