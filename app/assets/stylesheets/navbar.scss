@@ -1,4 +1,18 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: 25px 10px;
+  background-color: black;
+  margin-bottom: 25px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: white;
+  padding: 0px 5px;
+  font-weight: bold;
+}
+
+.navbar-link:hover {
+  color: #d24b2e;
 }

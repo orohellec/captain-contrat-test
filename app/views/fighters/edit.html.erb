@@ -1,6 +1,7 @@
 <h1>Editing Fighter</h1>
+<div class="content">
+  <%= render 'form', fighter: @fighter %>
 
-<%= render 'form', fighter: @fighter %>
-
-<%= link_to 'Show', @fighter %> |
-<%= link_to 'Back', fighters_path %>
+  <%= link_to 'Show', @fighter %> |
+  <%= link_to 'Back', fighters_path %>
+</div>

@@ -12,17 +12,13 @@ class PagesController < ApplicationController
     @all_fights = current_user.fighter.all_fights
   end
 
-  def fight_result
-    @last_fight = current_user.fighter.last_fight
-    @last_fight_winner = @last_fight.winner
-    @last_fight_loser = @last_fight.loser
-  end
-
   def fighters_ranking
     @fighters_ranked = Fighter.ranking_by_victory
   end
 
-  def fight_resume
+  def fight_result
     @history = History.find(params[:id])
+    @fight_winner = @history.winner
+    @fight_loser = @history.loser
   end
 end

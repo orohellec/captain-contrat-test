@@ -8,8 +8,7 @@ class Fighter < ApplicationRecord
   validates :user_id, uniqueness: true
 
   def self.fight(fighter_1, fighter_2)
-    game = FightService.new(fighter_1, fighter_2)
-    game.fight
+    FightService.new(fighter_1, fighter_2).fight
   end
 
   def self.ranking_by_victory
@@ -18,6 +17,14 @@ class Fighter < ApplicationRecord
 
   def self.fighters_except_current_user_fighter(user)
     self.all.where.not(user_id: user.id)
+  end
+
+  def fighter_avatar
+    if avatar.attached?
+      avatar
+    else
+      'anonyme.png'
+    end
   end
 
   def add_victory_or_defeat(result)

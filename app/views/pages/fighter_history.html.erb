@@ -1,11 +1,29 @@
 <h1>Historique de votre combattant</h1>
-
-<%= 'Victoires: ' + @total_wins.to_s %>
-<%= 'Défaites: ' + @total_loses.to_s %>
-<br>
-
-<% @all_fights.each do |history| %>
-  <%= "Date: #{history.created_at.strftime("%d-%m-%Y")} - Gagnant: #{history.winner.name} - Perdant: #{history.loser.name}" %>
-  <%= link_to 'Résumé', fight_resume_path(id: history.id) %>
-  <br>
-<% end %>
+<div class="fighter-wins-losses">
+  <h2><%= "Victoires: #{@total_wins} - Défaites: #{@total_loses}" %></h2>
+</div>
+<div class="fighter-histories content">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Gagnant</th>
+        <th>Perdant</th>
+        <th>Résumé</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_fights.each do |history| %>
+        <tr>
+          <td><%= history.created_at.strftime("%d-%m-%Y") %></td>
+          <td><%= history.created_at.strftime("%H h %M") %></td>
+          <td><%= history.winner.name %></td>
+          <td><%= history.loser.name %></td>
+          <td><%= link_to 'Détails', fight_result_path(id: history.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,34 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= image_tag(@fighter.avatar) if @fighter.avatar.attached? %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @fighter.name %>
-</p>
-
-<p>
-  <strong>Health:</strong>
-  <%= @fighter.health %>
-</p>
-
-<p>
-  <strong>Attack:</strong>
-  <%= @fighter.attack %>
-</p>
-
-<p><strong>Equipement:</strong></p>
-<% @fighter.equipments.each do |equipment| %>
-  <p><%= equipment.name %></p>
-  <p><%= equipment.attack %></p>
-  <p><%= equipment.armor %></p>
-<% end %>
-
-<% if current_user %>
-  <% if current_user.fighter == @fighter %>
-    <%= link_to 'Edit', edit_fighter_path(@fighter) %> |
-  <% end%>
-<% end %>
-<%= link_to 'Back', fighters_path %>
+<div class="fighter-avatar">
+  <%= image_tag(@fighter.avatar, size: "200x200") if @fighter.avatar.attached? %>
+</div>
+<div class="fighter-informations content">
+  <div class="fighter-data">
+    <div class="fighter">
+      <p><strong>Combattant:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Santé</th>
+            <th>Attaque</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @fighter.name %></td>
+            <td><%= @fighter.health %></td>
+            <td><%= @fighter.attack %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fighter-equipment">
+      <p><strong>Equipement:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Attaque</th>
+            <th>Armure</th>
+          </tr>
+        </thead>
+        <% @fighter.equipments.each do |equipment| %>
+          <tbody>
+            <td><%= equipment.name %></td>
+            <td><%= equipment.attack %></td>
+            <td><%= equipment.armor %></td>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <% if current_user %>
+    <% if current_user.fighter == @fighter %>
+      <%= link_to 'Editer', edit_fighter_path(@fighter) %> |
+    <% end%>
+  <% end %>
+  <%= link_to 'Retour', fighters_path%>
+</div>

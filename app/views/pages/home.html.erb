@@ -1,26 +1,32 @@
 <h1>Bienvenue dans l'arène</h1>
 
-<p>Le principe de l'application est simple, vous devez créer un profil puis un combattant pour affronter d'autres combattants créé par d'autres utilisateurs</p>
-
-<% if current_user %>
-  <% if current_user.fighter %>
-    <%= button_to(
-      'Combattre un adversaire aléatoire',
-      fight_path,
-      controller: "fighters_controller",
-      params: { 
-        fighter1_id: current_user.fighter.id,
-        fighter2_id: @fighters_without_user_fighter.offset(rand(@fighters_without_user_fighter.count)).first 
-      },
-      method: :post
-    ) %>
+<div class="fight-arena">
+  <% if current_user %>
+      <% if current_user.fighter %>
+      <h2 class="fight-arena-intro"><%= "Prêt à conquérir le monde #{current_user.fighter.name} ?" %></h2>
+      <div class="fighter-avatar">
+        <%= image_tag current_user.fighter.fighter_avatar %>
+      </div>
+      <%= button_to(
+        'Combattre pour la gloire !', 
+        fight_path,
+        method: :post,
+        params: { 
+          fighter1_id: current_user.fighter.id,
+          fighter2_id: @fighters_without_user_fighter.offset(rand(@fighters_without_user_fighter.count)).first 
+        },
+        id: "fight-arena-button"
+      ) 
+      %>
+      <p>(Adversaire aléatoire)</p>
+    <% else %>
+      <p>Vous devez créer un combattant pour pouvoir vous battre</p>
+    <% end %>
   <% else %>
-    <p>Vous devez créer un combattant pour pouvoir vous battre</p>
+    <p>Vous devez vous connecter pour pouvoir vous battre</p>
   <% end %>
-  
-<% else %>
-  <p>Vous devez vous connecter pour pouvoir vous battre</p>
-<% end %>
+</div>
+
 
 
 

@@ -1,3 +1,18 @@
 // Place all the styles related to the Fighters controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.fighter-data {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px;
+}
+
+.fighter {
+  margin-right: 5%;
+}
+
+.fighter-equipment {
+  margin-left: 5%;
+}

@@ -1,7 +1,20 @@
-<h1>Résultat du dernier combat</h1>
-<%= "Winner: " + @last_fight_winner.name %>
-<%= "Loser: " + @last_fight_loser.name %>
+<div class="fighter-result">
+  <h1>Résultat</h1>
 
-<% @last_fight.resume.each do |line| %>
-  <p><%= line %></p>
-<% end %>
+  <div class="fighter-versus">
+    <div class="fighter-winner">
+      <%= image_tag @fight_winner.fighter_avatar, size: "200x200" %>
+      <p class="fighter-result-name"><%= "Victoire: " + @fight_winner.name %></p>
+    </div>
+    <div class="versus">VS</div>
+    <div class="fighter-loser">
+      <%= image_tag @fight_loser.fighter_avatar, size: "200x200" %>
+      <p class="fighter-result-name"><%= "Défaite: " + @fight_loser.name %></p>
+    </div>
+  </div>
+  <div class="fighter-resume">
+    <% @history.resume.each do |line| %>
+      <p><%= line %></p>
+    <% end %>
+  </div>
+</div>

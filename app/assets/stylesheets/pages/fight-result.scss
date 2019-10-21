@@ -1,0 +1,35 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fighter-versus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 50px 0px;
+}
+
+.versus {
+  margin-right: 10%;
+  margin-left: 10%;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #d24b2e;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.fighter-resume {
+  width: max-content;
+  padding: 30px 30px;
+  margin: auto;
+  background-color: white;
+  border-radius : 7px;
+}
+
+.fighter-result-name {
+  background-color: white;
+  border-radius : 7px;
+}

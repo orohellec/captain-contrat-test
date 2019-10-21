@@ -57,7 +57,7 @@ class FightersController < ApplicationController
       resume: fight_result[:resume]
     )
     history.save
-    redirect_to fight_result_path
+    redirect_to fight_result_path(id: current_user.fighter.last_fight)
   end
 
   def destroy
