@@ -2,7 +2,6 @@
   <% if fighter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(fighter.errors.count, "error") %> prohibited this fighter from being saved:</h2>
-
       <ul>
       <% fighter.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -16,16 +15,18 @@
     <%= form.file_field :avatar, accept: 'image/png,image/gif,image/jpeg' %>
   </div>
 
+  <% if action_name == 'new'%>
+    <div class="field">
+      <%= form.text_field :name, placeholder: "Nom (entre 2 et 12 caractères)", class: "form-field" %>
+    </div>
+  <% end %>
+
   <div class="field">
-    <%= form.text_field :name, placeholder: "Nom (entre 2 et 12 caractères)" %>
+    <%= form.number_field :health, placeholder: "Points de vie (entre 200 et 400)", class: "form-field" %>
   </div>
 
   <div class="field">
-    <%= form.number_field :health, placeholder: "Points de vie (entre 200 et 400)" %>
-  </div>
-
-  <div class="field">
-    <%= form.number_field :attack, placeholder: "Points d'attaque (entre 10 et 20)" %>
+    <%= form.number_field :attack, placeholder: "Points d'attaque (entre 10 et 20)", class: "form-field" %>
   </div>
 
   <div class="field">

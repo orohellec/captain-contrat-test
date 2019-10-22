@@ -4,25 +4,24 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.email_field :email, autofocus: true, placeholder: "Email", autocomplete: "email" %>
+      <%= f.email_field :email, autofocus: true, placeholder: "Email", autocomplete: "email", class: "form-field" %>
     </div>
 
     <div class="field">
-
-      <%= f.password_field :password, placeholder: "Mot de passe", autocomplete: "new-password" %>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> caractères minimum)</em>
       <% end %><br />
+      <%= f.password_field :password, placeholder: "Mot de passe", autocomplete: "new-password", class: "form-field" %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, placeholder: "Confirmer mot de passe", autocomplete: "new-password" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmer mot de passe", autocomplete: "new-password", class: "form-field" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "S'inscrire" %>
+      <%= f.submit "S'inscrire", class: "form-field" %>
     </div>
   <% end %>
   <br>
   <%= render "devise/shared/links" %>
-<div class="content">
+</div>
