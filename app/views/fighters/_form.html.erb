@@ -13,29 +13,28 @@
 
   <div class="field">
     <%= form.label :avatar %>
-    <%= form.file_field :avatar %>
+    <%= form.file_field :avatar, accept: 'image/png,image/gif,image/jpeg' %>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: "Nom" %>
   </div>
 
   <div class="field">
-    <%= form.label :health %>
-    <%= form.number_field :health %>
+    <%= form.number_field :health, placeholder: "Points de vie" %>
   </div>
 
   <div class="field">
-    <%= form.label :attack %>
-    <%= form.number_field :attack %>
+    <%= form.number_field :attack, placeholder: "Points d'attaque" %>
   </div>
 
   <div class="field">
+    <%= form.label "Equipement" %>
+    <br>
     <%= form.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit value: "Enregistrer" %>
   </div>
 <% end %>

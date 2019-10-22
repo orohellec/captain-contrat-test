@@ -8,7 +8,7 @@
         <%= image_tag current_user.fighter.fighter_avatar %>
       </div>
       <%= button_to(
-        'Combattre pour la gloire !', 
+        'COMBATTRE (Adversaire aléatoire)', 
         fight_path,
         method: :post,
         params: { 
@@ -18,12 +18,11 @@
         id: "fight-arena-button"
       ) 
       %>
-      <p>(Adversaire aléatoire)</p>
     <% else %>
-      <p>Vous devez créer un combattant pour pouvoir vous battre</p>
+      <div class="arena-info">Vous devez créer un combattant pour pouvoir vous battre</div>
     <% end %>
   <% else %>
-    <p>Vous devez vous connecter pour pouvoir vous battre</p>
+    <div class="arena-info">Vous devez vous connecter pour pouvoir vous battre</div>
   <% end %>
 </div>
 

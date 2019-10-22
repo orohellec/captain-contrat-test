@@ -14,17 +14,17 @@
  *= require_self
  */
  
-
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Black Ops One', Arial, Helvetica, sans-serif;
 }
 html {
   height: 100%;
   background-image: url('264711.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 body {
@@ -39,6 +39,11 @@ body {
 
 h1 {
   margin-bottom: 30px;
+  background-color: white;
+  max-width: max-content;
+  padding: 5px 15px;
+  margin: auto;
+  border-radius: 7px;
 }
 
 h2 {
@@ -47,10 +52,26 @@ h2 {
   margin-bottom: 30px;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
 .content {
   background-color: white;
   max-width: max-content;
   margin: auto;
   padding: 30px;
   border-radius: 7px;
+}
+
+.field {
+  margin: 10px;
+  width: 200px;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
 }
