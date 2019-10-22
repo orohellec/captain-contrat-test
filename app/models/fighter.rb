@@ -5,7 +5,11 @@ class Fighter < ApplicationRecord
   has_many :fighter_equipments
   has_many :equipments, through: :fighter_equipments
   
-  validates :user_id, uniqueness: true
+  validates :name, uniqueness: true, presence: true, length: {in: 2..12},
+    format: { with: /\A[a-zA-Z0-9]+\z/, message: "seulement des chiffres et/ou des lettres (pas d'accents)" }
+  validates :health, presence: true, inclusion: {in: 200..400}
+  validates :attack, presence: true, inclusion: {in: 10..20}
+  validates :user, uniqueness: true
 
   def self.fight(fighter_1, fighter_2)
     FightService.new(fighter_1, fighter_2).fight
