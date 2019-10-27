@@ -10,10 +10,10 @@ Fighter.delete_all
 User.delete_all
 
 3.times do |i|
-  user = User.new(email: "example#{i + 1}@gmail.com", password: 'lalala')
+  user = User.new(email: FFaker::Internet.email, password: 'lalala')
   user.save
   
-  Fighter.create!(name: "Combattant #{i + 1}", health: 100 * (i + 1), attack: 10, user: user)
+  Fighter.create!(name: FFaker::Name.name[2..12], health: rand(200..400), attack: rand(10..20), user: user)
 end
 
 puts '3 users created with 1 Fighter associated each'

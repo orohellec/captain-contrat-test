@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 2019_10_20_195032) do
     t.integer "attack"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.integer "wins", default: 0
     t.integer "losses", default: 0
     t.float "ratio", default: 0.0
-    t.index ["user_id"], name: "index_fighters_on_user_id"
+    t.index ["user_id"], name: "index_fighters_on_user_id", unique: true
   end
 
   create_table "histories", force: :cascade do |t|
