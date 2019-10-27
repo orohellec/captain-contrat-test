@@ -1,24 +1,11 @@
-# README
+# Fight Arena
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Lien de l'application en production: https://fight-world-arena.herokuapp.com
 
-Things you may want to cover:
+Je me suis permis de prendre quelques libertés par rapport à votre challenge. Pour jouer à mon jeu il faut absolument créer un compte, puis créer un combattant. On peut alors affronter les combattants des autres joueurs (sans choisir lequel). On peut aussi se faire attaquer pendant son absence. Plus d'infos sur le site en allant sur l'onglet règles du jeu.
 
-* Ruby version
+Tout n'est pas parfait, je n'ai pas fait beaucoup de tests et il y a bien des choses que j'aimerai ajouter pour rendre le jeu plus fun mais je vais m'arrêter là pour votre challenge.
 
-* System dependencies
+Merci de votre temps :) 
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
